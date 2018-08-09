@@ -1,2 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+li#sign-out.pull-right a{
+  border-radius: 0 0 0 0;
+  padding: 0px;
+  text-align: center;
+}
+
+li.pull-right{
+  padding: 2px;
+  vertical-align: middle;
+}
