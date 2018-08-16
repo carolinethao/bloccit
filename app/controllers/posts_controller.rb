@@ -53,6 +53,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def after_create
+    @post = Post.find(params[:id])
+  end
+
   private
   def post_params
     params.require(:post).permit(:title, :body)
