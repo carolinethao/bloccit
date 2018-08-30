@@ -12,7 +12,8 @@
         <h2 class="media-heading"><%= @user.name %></h2>
         <small>
           <%= pluralize(@user.posts.count, 'post') %>,
-          <%= pluralize(@user.comments.count, 'comment') %>
+          <%= pluralize(@user.comments.count, 'comment') %>,
+          <%= pluralize(@user.favorites.count, 'favorite') %>
         </small>
       </div>
     </div>
@@ -20,7 +21,28 @@
 </div>
 
 <h2>Posts</h2>
-<%= render @user.posts %>
+<%= render_user_posts(@user) %>
 
 <h2>Comments</h2>
-<%= render @user.comments %>
+<%= render_user_comments(@user) %>
+
+<% if current_user %>
+  <h2>Favorties</h2>
+  <div class="container">
+    <div class="row">
+      <% if @user.favorites.count > 0 %>
+        <% @user.favorite_posts.each do |post| %>
+          <div class="pull-left">
+            <%= image_tag post.user.avatar_url(48)%>
+          </div>
+          <div class="col-6">
+            <%= render "posts/post", post: post %>
+            <br />
+          <% end %>
+        <% else %>
+          <%= @user.name %> has not favorited any posts yet.
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
